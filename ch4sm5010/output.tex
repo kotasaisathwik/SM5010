@@ -1,0 +1,336 @@
+\documentclass[journal,12pt,twocolumn]{IEEEtran}
+%
+\usepackage{setspace}
+\usepackage{gensymb}
+\usepackage{xcolor}
+\usepackage{caption}
+\usepackage[hyphens,spaces,obeyspaces]{url}
+%\usepackage{subcaption}
+%\doublespacing
+\singlespacing
+
+%\usepackage{graphicx}
+%\usepackage{amssymb}
+%\usepackage{relsize}
+\usepackage[cmex10]{amsmath}
+\usepackage{mathtools}
+%\usepackage{amsthm}
+%\interdisplaylinepenalty=2500
+%\savesymbol{iint}
+%\usepackage{txfonts}
+%\restoresymbol{TXF}{iint}
+%\usepackage{wasysym}
+\usepackage{amsthm}
+\usepackage{mathrsfs}
+\usepackage{txfonts}
+\usepackage{stfloats}
+\usepackage{cite}
+\usepackage{cases}
+\usepackage{subfig}
+%\usepackage{xtab}
+\usepackage{longtable}
+\usepackage{multirow}
+%\usepackage{algorithm}
+%\usepackage{algpseudocode}
+\usepackage{enumerate}
+\usepackage{mathtools}
+%\usepackage{eenrc}
+%\usepackage[framemethod=tikz]{mdframed}
+\usepackage[breaklinks]{hyperref}
+%\usepackage{breakcites}
+\usepackage{listings}
+\usepackage[latin1]{inputenc}                                 %%
+\usepackage{color}                                            %%
+\usepackage{array}                                            %%
+\usepackage{longtable}                                        %%
+\usepackage{calc}                                             %%
+\usepackage{multirow}                                         %%
+\usepackage{hhline}                                           %%
+\usepackage{ifthen}                                           %%
+%optionally (for landscape tables embedded in another document): %%
+\usepackage{lscape}     
+
+
+\usepackage{tikz}
+\usepackage{circuitikz}
+\usepackage{karnaugh-map}
+\usepackage{pgf}
+\usepackage[hyphenbreaks]{breakurl}
+
+%\usepackage{url}
+%\def\UrlBreaks{\do\/\do-}
+
+
+
+
+
+%\usepackage{stmaryrd}
+
+
+%\usepackage{wasysym}
+%\newcounter{MYtempeqncnt}
+\DeclareMathOperator*{\Res}{Res}
+%\renewcommand{\baselinestretch}{2}
+\renewcommand\thesection{\arabic{section}}
+\renewcommand\thesubsection{\thesection.\arabic{subsection}}
+\renewcommand\thesubsubsection{\thesubsection.\arabic{subsubsection}}
+
+\renewcommand\thesectiondis{\arabic{section}}
+\renewcommand\thesubsectiondis{\thesectiondis.\arabic{subsection}}
+\renewcommand\thesubsubsectiondis{\thesubsectiondis.\arabic{subsubsection}}
+
+% correct bad hyphenation here
+\hyphenation{op-tical net-works semi-conduc-tor}
+
+%\lstset{
+	%language=C,
+	%frame=single, 
+	%breaklines=true
+	%}
+
+%\lstset{
+	%%basicstyle=\small\ttfamily\bfseries,
+	%%numberstyle=\small\ttfamily,
+	%language=Octave,
+	%backgroundcolor=\color{white},
+	%%frame=single,
+	%%keywordstyle=\bfseries,
+	%%breaklines=true,
+	%%showstringspaces=false,
+	%%xleftmargin=-10mm,
+	%%aboveskip=-1mm,
+	%%belowskip=0mm
+	%}
+
+%\surroundwithmdframed[width=\columnwidth]{lstlisting}
+\def\inputGnumericTable{}                                 %%
+\lstset{
+	%language=C,
+	frame=single, 
+	breaklines=true,
+	columns=fullflexible
+}
+
+\graphicspath{ {./title/} } 
+\begin{document}
+		\bibliographystyle{IEEEtran}
+	
+	\title{
+		
+		
+		\includegraphics[width=15cm, height=4cm]{title}
+		\centering
+		
+	}
+	\author{G V V Sharma$^{*}$% <-this % stops a space
+		\thanks{*The author is with the Department
+			of Electrical Engineering, Indian Institute of Technology, Hyderabad
+			502285 India e-mail:  gadepall@iith.ac.in. All content in this manual is released under GNU GPL.  Free and open source.}}
+
+
+% make the title area
+\maketitle
+
+\tableofcontents
+
+\bigskip
+
+\renewcommand{\thefigure}{\theenumi}
+\renewcommand{\thetable}{\theenumi}
+
+\begin{abstract}
+%\boldmath
+This manual explains Karnaugh maps (K-map) using don't care conditions.
+\end{abstract}
+%
+\section{Don't Care Conditions}
+\begin{enumerate}[1.]
+\item {Don't Care Conditions: }
+4 binary digits are used in the incrementing decoder \cite{gvv_kmap}.  However, only the numbers from 0-9 are used as input/output
+in the decoder and we {\em don't care} about the numbers from 10-15.  This phenomenon can be addressed by revising the truth table in \cite{gvv_kmap}
+to obtain Table \ref{table:dont_care_table}.
+\begin{table}[h!]
+	\begin{center}
+		\begin{tabular}{ |c|c|c|c|c|c|c|c| } 
+			\hline
+			Z & Y & X & W & \textbf{D} & \textbf{C} & \textbf{B} & \textbf{A}  \\ 
+			\hline
+			0 & 0 & 0 & 0 & 0 & 0 & 0 & 1  \\ 
+			\hline
+			0 & 0 & 0 & 1 & 0 & 0 & 1 & 0  \\ 
+			\hline
+			0 & 0 & 1 & 0 & 0 & 0 & 1 & 1  \\ 
+			\hline
+			0 & 0 & 1 & 1 & 0 & 1 & 0 & 0  \\
+			\hline
+			0 & 1 & 0 & 0 & 0 & 1 & 0 & 1  \\
+			\hline
+			0 & 1 & 0 & 1 & 0 & 1 & 1 & 0  \\
+			\hline
+			0 & 1 & 1 & 0 & 0 & 1 & 1 & 1  \\ 
+			\hline
+			0 & 1 & 1 & 1 & 1 & 0 & 0 & 0  \\
+			\hline
+			1 & 0 & 0 & 0 & 1 & 0 & 0 & 1  \\
+			\hline
+			1 & 0 & 0 & 1 & 0 & 0 & 0 & 0  \\ 
+			\hline
+				1 & 0 & 1 & 0 & - & - & - & -  \\ 
+			\hline
+				1 & 0 & 1 & 1 & - & - & - & -  \\ 
+			\hline
+				1 & 1 & 0 & 0 & - & - & - & -  \\ 
+			\hline
+				1 & 1 & 0 & 1 & - & - & - & -  \\ 
+			\hline
+				1 & 1 & 1 & 0 & - & - & - & -  \\ 
+			\hline
+				1 & 1 & 1 & 1 & - & - & - & -  \\ 
+			\hline
+		\end{tabular}
+\caption{}
+\label{table:dont_care_table}
+\end{center}
+\end{table}
+\item  The revised K-map for A is available in Fig. \ref{fig:kmap_A_x}.  Show that 
+\begin{equation}
+	A = {W}^{\prime}
+\end{equation}
+\begin{figure}[!h]
+	\resizebox {\columnwidth} {!} {
+		\input{./figs/kmap_A_x}
+	}
+	\caption{K-map for $A$ with don't cares.}
+	\label{fig:kmap_A_x}
+\end{figure}
+%
+\item  The revised K-map for B is available in Fig. \ref{fig:kmap_B_x}.  Show that 
+%
+\begin{equation}
+	B = WX^{\prime}Z^{\prime} + W^{\prime}X
+\end{equation}
+\begin{figure}[!h]
+	\resizebox {\columnwidth} {!} {
+		\input{./figs/kmap_B_x}
+	}
+	\caption{K-map for $B$ with don't cares.}
+	\label{fig:kmap_B_x}
+\end{figure}
+%
+\item  The revised K-map for C is available in Fig. \ref{fig:kmap_C_x}.  Show that 
+%
+\begin{equation}
+	C = {X}^{\prime}{Y} + {W}^{\prime}{Y} + {W}{X}{Y}^{\prime}
+\end{equation}
+\begin{figure}[!h]
+	\resizebox {\columnwidth} {!} {
+		\input{./figs/kmap_C_x}
+	}
+	\caption{K-map for $C$ with don't cares.}
+	\label{fig:kmap_C_x}
+\end{figure}
+%
+\item  The revised K-map for D is available in Fig. \ref{fig:kmap_D_x}.  Show that 
+%
+\begin{equation}
+	D  = {W}^{\prime}{Z} + {W}{X}{Y}
+\end{equation}
+\begin{figure}[!h]
+	\resizebox {\columnwidth} {!} {
+		\input{./figs/kmap_D_x}
+	}
+	\caption{K-map for $D$ with don't cares.}
+	\label{fig:kmap_D_x}
+\end{figure}
+
+\item Verify the incrementing decoder with don't care conditions using the arduino.
+\item {Display Decoder:}
+Use K-maps to obtain the minimized expressions for $a,b,c,d,e,f,g$ in terms of $A,B,C,D$ with  don't care conditions.\\
+\textbf{Solution:}\\
+With Don't Care:\\
+from Fig. \ref{fig:kmap_a}
+\begin{equation}
+	a = CB^{\prime}A^{\prime}+D^{\prime}C^{\prime}B^{\prime}A
+\end{equation}
+from Fig. \ref{fig:kmap_b}
+\begin{equation}
+	b = CB^{\prime}A+CBA^{\prime}
+\end{equation}
+from Fig.  \ref{fig:kmap_c}
+\begin{equation}
+	c = C^{\prime}BA^{\prime}
+\end{equation}
+from Fig. \ref{fig:kmap_d}
+\begin{equation}
+	d = CB^{\prime}A^{\prime}+CBA+C^{\prime}B^{\prime}A
+\end{equation}
+from Fig. \ref{fig:kmap_e}
+\begin{equation}
+	e = A+CB^{\prime}
+\end{equation}
+from Fig. \ref{fig:kmap_f}
+\begin{equation}
+	f = BA+D^{\prime}C^{\prime}A+C^{\prime}B
+\end{equation}
+from Fig. \ref{fig:kmap_g}
+\begin{equation}
+	g = D^{\prime}C^{\prime}B^{\prime}+CBA
+\end{equation}
+\begin{figure}[!h]
+	\resizebox {\columnwidth} {!} {
+		\input{./figs/a_kmap}
+	}
+	\caption{K-map for $a$ with don't cares.}
+	\label{fig:kmap_a}
+\end{figure}
+\begin{figure}[!h]
+	\resizebox {\columnwidth} {!} {
+		\input{./figs/b_kmap}
+	}
+	\caption{K-map for $b$ with don't cares.}
+	\label{fig:kmap_b}
+\end{figure}
+\begin{figure}[!h]
+	\resizebox {\columnwidth} {!} {
+		\input{./figs/c_kmap}
+	}
+	\caption{K-map for $c$ with don't cares.}
+	\label{fig:kmap_c}
+\end{figure}
+\begin{figure}[!h]
+	\resizebox {\columnwidth} {!} {
+		\input{./figs/d_kmap}
+	}
+	\caption{K-map for $d$ with don't cares.}
+	\label{fig:kmap_d}
+\end{figure}
+\begin{figure}[!h]
+	\resizebox {\columnwidth} {!} {
+		\input{./figs/e_kmap}
+	}
+	\caption{K-map for $e$ with don't cares.}
+	\label{fig:kmap_e}
+\end{figure}
+\begin{figure}[!h]
+	\resizebox {\columnwidth} {!} {
+		\input{./figs/f_kmap}
+	}
+	\caption{K-map for $f$ with don't cares.}
+	\label{fig:kmap_f}
+\end{figure}
+\begin{figure}[!h]
+	\resizebox {\columnwidth} {!} {
+		\input{./figs/g_kmap}
+	}
+	\caption{K-map for $g$ with don't cares.}
+	\label{fig:kmap_g}
+\end{figure}
+\item Verify the display decoder with don't care conditions using arduino.
+\end{enumerate}
+
+\bibliography{IEEEabrv,gvv_dontcare}
+
+
+\end{document}
+
+
