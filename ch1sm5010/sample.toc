@@ -1,0 +1,8 @@
+\contentsline {section}{\numberline {I}Components}{1}{}%
+\contentsline {subsection}{\numberline {\mbox {I-A}}Breadboard}{1}{}%
+\contentsline {subsection}{\numberline {\mbox {I-B}}Seven Segment Display}{1}{}%
+\contentsline {subsection}{\numberline {\mbox {I-C}}Arduino}{1}{}%
+\contentsline {section}{\numberline {II}Display Control through Hardware }{1}{}%
+\contentsline {subsection}{\numberline {\mbox {II-A}}Powering the Display}{1}{}%
+\contentsline {subsection}{\numberline {\mbox {II-B}}Controlling the Display}{2}{}%
+\contentsline {section}{\numberline {III}Display Control through Software}{2}{}%
