@@ -1,6 +1,6 @@
 #include <Arduino.h>
   //Declaring all variables as integers
-  int Z,Y,X,W;
+  int D1,D2,X,D3
 int a,b,c,d,e,f;
   //Code released under GNU GPL.  Free to use for anything.
   void disp_7447(int D, int C, int B, int A)
